@@ -3,7 +3,7 @@ export default function TodoWriteForm({ addTodo }) {
         e.preventDefault()
         const form = e.target
         if (form.todo.value.length === 0) {
-            alert('입력!')
+            alert('할 일을 입력해주세요')
             return
         }
         addTodo({ text: form.todo.value })
