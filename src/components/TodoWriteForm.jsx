@@ -7,6 +7,8 @@ export default function TodoWriteForm({ addTodo }) {
             return
         }
         addTodo({ text: form.todo.value })
+        //입력후 input 초기화
+        form.reset()
     }
     return (
         <form onSubmit={handleOnSubmit}>

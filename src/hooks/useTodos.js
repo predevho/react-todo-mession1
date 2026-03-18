@@ -14,13 +14,13 @@ export function useTodos() {
         nextId.current++
     }
 
-    const removeTodo = (selectedTodo) => {
-        const nextTodos = todos.filter((todo) => todo.id !== selectedTodo)
+    const removeTodo = (id) => {
+        const nextTodos = todos.filter((todo) => todo.id !== id)
         setTodos(nextTodos)
     }
-    const toggleTodo = (selectedTodo) => {
+    const toggleTodo = (id) => {
         const nextTodos = todos.map((todo) => {
-            return selectedTodo === todo.id ? { ...todo, completed: !todo.completed } : todo
+            return id === todo.id ? { ...todo, completed: !todo.completed } : todo
         })
         setTodos(nextTodos)
     }
