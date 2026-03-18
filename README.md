@@ -1,16 +1,80 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# ✅ React Todo App
 
-Currently, two official plugins are available:
+> React 기초를 활용한 Todo 애플리케이션
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+![todo_app_component_structure](https://github.com/user-attachments/assets/06d5f34f-6760-4003-908a-c1f2640fdbb8)
 
-## React Compiler
+<br/>
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📌 프로젝트 소개
 
-## Expanding the ESLint configuration
+React의 핵심 개념인 **컴포넌트 분리**, **Custom Hook**, **상태 관리(useState/useRef)** 를 직접 구현해보는 Todo 앱입니다.  
+할 일 추가 / 완료 토글 / 삭제 기능을 갖추고 있으며, 관심사 분리 원칙에 따라 로직과 UI를 구분하여 작성했습니다.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+<br/>
+
+## 🛠 기술 스택
+
+| 구분 | 사용 기술 |
+|------|-----------|
+| 프레임워크 | React 18 |
+| 빌드 도구 | Vite |
+| 언어 | JavaScript (JSX) |
+| 상태 관리 | useState, useRef (Custom Hook) |
+
+<br/>
+
+## ⚙️ 구현 기능
+
+- ✅ 할 일 **추가** — 입력 후 등록 버튼 또는 Enter 키
+- ✅ 할 일 **완료 토글** — 체크박스 클릭으로 완료/미완료 전환
+- ✅ 할 일 **삭제** — 항목별 삭제 버튼
+- ✅ 빈 입력 **유효성 검사** — 공백 입력 시 경고 알림
+- ✅ 최신 항목이 **목록 상단**에 표시
+
+<br/>
+
+## 🗂 컴포넌트 구조
+
+```
+src/
+├── App.jsx                  # 루트 컴포넌트 — 상태·핸들러 배분
+├── hooks/
+│   └── useTodos.js          # Custom Hook — 상태 및 비즈니스 로직
+└── components/
+    ├── TodoWriteForm.jsx     # 할 일 입력 폼
+    ├── TodoList.jsx          # 할 일 목록 렌더링
+    └── TodoItem.jsx          # 개별 할 일 아이템
+```
+
+### 데이터 흐름
+
+```
+useTodos (Custom Hook)
+    ↓ todos, addTodo, toggleTodo, removeTodo
+  App.jsx
+    ├─→ TodoWriteForm  (addTodo)
+    └─→ TodoList       (todos, toggleTodo, removeTodo)
+              └─→ TodoItem × N
+```
+
+| 컴포넌트 | 역할 |
+|----------|------|
+| `useTodos` | `todos` 상태 및 CRUD 로직 관리 |
+| `App` | Hook에서 받은 상태·함수를 하위 컴포넌트에 전달 |
+| `TodoWriteForm` | 폼 제출 이벤트 처리 및 `addTodo` 호출 |
+| `TodoList` | 배열을 순회하며 `TodoItem` 렌더링 |
+| `TodoItem` | 체크박스·삭제 버튼 UI 및 이벤트 처리 |
+
+<br/>
+
+## 🚀 실행 방법
+
+```bash
+# 패키지 설치
+npm install
+
+# 개발 서버 실행
+npm run dev
+```
