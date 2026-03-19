@@ -26,4 +26,3 @@ export function useTodos() {
     }
     return { todos, addTodo, removeTodo, toggleTodo };
 }
-

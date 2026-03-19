@@ -4,6 +4,7 @@ export default function TodoWriteForm({ addTodo }) {
         const form = e.target
         if (!form.todo.value.trim()) return alert('할 일을 입력해주세요')
         addTodo({ text: form.todo.value })
+        //입력 후 폼 초기화
         form.reset()
     }
     return (
